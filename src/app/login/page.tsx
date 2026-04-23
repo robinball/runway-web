@@ -20,11 +20,14 @@ export default function LoginPage() {
 
       if (error) {
         setError(error.message);
+        console.error('Supabase error:', error);
       } else {
         setSubmitted(true);
       }
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      const message = err instanceof Error ? err.message : 'An error occurred';
+      setError(message);
+      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
