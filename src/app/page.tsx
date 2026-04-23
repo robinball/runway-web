@@ -1,16 +1,7 @@
 import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
 
-export default async function Page() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user) {
-    redirect('/app');
-  } else {
-    redirect('/login');
-  }
+export default function Page() {
+  // Always redirect to login for now
+  // Auth will be checked on the client-side in the login page
+  redirect('/login');
 }
